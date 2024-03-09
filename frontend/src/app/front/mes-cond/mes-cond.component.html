@@ -1,0 +1,29 @@
+<h3>Mes candidatures</h3>
+<div class="table-responsive">
+  <table class="table">
+    <!-- Entête du tableau -->
+    <thead class="text-primary">
+      <th>Id candidature</th>
+      <th>Nom</th>
+      <th>Prénom</th>
+      <th>CV</th>
+      <th>Rôle</th>
+      <th>État de la candidature</th>
+      <th class="text-right">Lettre de motivation</th>
+    </thead>
+    <tbody>
+      <!-- Boucle sur les condidatures pour afficher les données -->
+      <tr *ngFor="let i of con">
+        <td>{{ i.idCondidature }}</td>
+        <td>{{ i.user?.firstName }}</td>
+        <td>{{ i.user?.lastName }}</td>
+        <td>{{ i.user?.cv }}</td>
+        <td>{{ i.user?.role }}</td>
+        <td>{{ i.etatCondidature }}</td>
+        <td>{{ i.coverLetter }}</td> 
+        <button class="btn btn-danger" (click)="deleteCondidature(i.idCondidature)">Supprimer</button> <!-- Bouton de suppression -->
+        <button class="btn btn-primary" (click)="editCondidature(i)">Modifier</button>
+      </tr>
+    </tbody>
+  </table>
+</div>

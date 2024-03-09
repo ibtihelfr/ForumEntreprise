@@ -1,0 +1,33 @@
+.creative-section {
+    position: relative;
+    overflow: hidden;
+}
+
+.creative-image {
+    width: 50%;
+    height: 50%;
+    object-fit: cover;
+    border-radius: 10px; /* Add rounded corners to the image */
+}
+
+.creative-card {
+    height: 100%;
+    border-radius: 15px; /* Add rounded corners to the card */
+}
+
+.creative-title {
+    font-size: 1.5em;
+    color: hsl(0, 0%, 0%); /* Set text color to white */
+}
+
+.creative-button {
+    font-size: 1.2em;
+    padding: 10px 20px;
+    border-radius: 25px; /* Add rounded corners to the button */
+    background-color: #ff5454; /* Set button background color to red */
+    border: none; /* Remove button border */
+}
+
+.creative-button:hover {
+    background-color: #e04141; /* Change button color on hover */
+}

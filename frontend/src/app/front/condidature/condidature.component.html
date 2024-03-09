@@ -1,0 +1,137 @@
+<section class="section section-lg section-shaped">
+  <br>
+  <div class="shape shape-style-1 shape-default">
+    <span></span>
+    <span></span>
+    <span></span>
+    <span></span>
+    <span></span>
+    <span></span>
+    <span></span>
+    <span></span>
+  </div>
+
+  <section class="section section-lg pt-lg-0 section-contact-us">
+    <div class="container">
+      <div class="row row-grid align-items-center">
+        <div class="col-md-6 order-md-2">
+          <img src="./assets/img/theme/Logo_ESPRIT_-_Tunisie.png" class="img-fluid floating">
+        </div>
+        <div class="col-md-6 order-md-1">
+          <div class="pr-md-5">
+            <div class="contact-form-container">
+              <form #form="ngForm" (ngSubmit)="OnSubmit(form)">
+                <h3>Contactez-nous</h3>
+                <!-- <div class="form-group">
+                  <input type="text" class="form-control" placeholder="Nom" [value]="user.firstName" name="firstName" required disabled>
+                  <div *ngIf="form.controls['firstName']?.invalid && (form.controls['firstName']?.dirty || form.controls['firstName']?.touched)" class="text-danger text-white">
+                    Le nom est requis.
+                  </div>
+                </div>
+                <div class="form-group">
+                  <input type="text" class="form-control" placeholder="Prenom" [value]="user.lastName" name="LastName" required disabled>
+                  <div *ngIf="form.controls['LastName']?.invalid && (form.controls['LastName']?.dirty || form.controls['LastName']?.touched)" class="text-danger text-white">
+                    Le prénom est requis.
+                  </div>
+                </div>
+                <div class="form-group">
+                  <input type="email" class="form-control" placeholder="Email" name="email" [(ngModel)]="user.email" required email>
+                  <div *ngIf="form.controls['email']?.invalid && (form.controls['email']?.dirty || form.controls['email']?.touched)" class="text-danger text-white">
+                    L'email est invalide.
+                  </div>
+                </div> -->
+                <div class="form-group">
+                  <label for="cvFile"></label>
+                  <div class="custom-file">
+                    <input type="file" class="custom-file-input" id="cvFile" (change)="handleCVFileInput($event)" name="cv" required>
+                    <label class="custom-file-label" for="cvFile">Votre CV</label>
+                  </div>
+                  <div *ngIf="form.controls['cv']?.invalid && (form.controls['cv']?.dirty || form.controls['cv']?.touched)" class="text-danger text-white">
+                    Le CV est requis.
+                  </div>
+                </div> 
+                <div class="form-group select-wrapper">
+                  <label for="modeleLettre">Modèle de lettre</label>
+                  <select class="form-control" id="modeleLettre" (change)="onSelectModele($event.target.value)">
+                    <option value="">Sélectionner un modèle de lettre</option>
+                    <option *ngFor="let modele of modelesLettre" [value]="modele">{{ modele }}</option>
+                  </select>
+                </div> 
+                
+                
+                <!-- Champ de texte pour la lettre de motivation -->
+                <textarea [(ngModel)]="lettreMotivation" rows="4"></textarea>
+                
+             
+                <div class="form-group">
+                  <textarea class="form-control" rows="4" placeholder="Lettre de motivation" [(ngModel)]="f.coverLetter" name="coverLetter" required></textarea>
+                  <div *ngIf="form.controls['coverLetter']?.invalid && (form.controls['coverLetter']?.dirty || form.controls['coverLetter']?.touched)" class="text-danger text-white">
+                  </div>
+                </div>
+                <div class="form-group form-check">
+                  <input type="checkbox" class="form-check-input" id="robotCheck" required>
+                  <label class="form-check-label" for="robotCheck">Je ne suis pas un robot</label>
+                </div>
+                <!-- Alert element for bad words -->
+                <div *ngIf="showBadWordsAlert" class="alert alert-danger mt-3" role="alert">
+                  Erreur : La lettre de motivation contient un langage inapproprié.
+                </div>
+                <!-- Your form fields here -->
+                <button type="submit" class="btn btn-success">Envoyer</button> 
+                <!-- Success alert for form submission -->
+                <div *ngIf="showSuccessAlert" class="alert alert-success alert-dismissible fade show mt-3" role="alert">
+                  <strong>Succès!</strong> La candidature a été envoyée avec succès.
+                  <button type="button" class="close" (click)="closeAlert()" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                  </button>
+                </div>
+                <!-- Error alert for form submission -->
+                <div *ngIf="showFailedsAlert" class="alert alert-danger alert-dismissible fade show mt-3" role="alert">
+                  Veuillez remplir tous les champs obligatoires.
+                  <button type="button" class="close" aria-label="Close" (click)="closeFailedAlert()">
+                    <span aria-hidden="true">&times;</span>
+                  </button>
+                </div>
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+</section> 
+<button (click)="toggleCondidaturesTable()" style="color: rgb(245, 19, 19); font-family: Arial, sans-serif;"> mes candidatures</button>
+<!-- Tableau des candidatures -->
+<div *ngIf="showCondidaturesTable" class="row mt-3">
+  <div class="col">
+    <h3>Mes candidatures</h3>
+    <div class="table-responsive">
+      <table class="table">
+        <!-- Entête du tableau -->
+        <thead class="text-primary">
+          <th>Id candidature</th>
+          <th>Nom</th>
+          <th>Prénom</th>
+          <th>CV</th>
+          <th>Rôle</th>
+          <th>État de la candidature</th>
+          <th class="text-right">Lettre de motivation</th>
+        </thead>
+        <tbody>
+          <!-- Boucle sur les condidatures pour afficher les données -->
+          <tr *ngFor="let i of con">
+            <td>{{ i.idCondidature }}</td>
+            <td>{{ i.user?.firstName }}</td>
+            <td>{{ i.user?.lastName }}</td>
+            <td>{{ i.user?.cv }}</td>
+            <td>{{ i.user?.role }}</td>
+            <td>{{ i.etatCondidature }}</td>
+            <td>{{ i.coverLetter }}</td> 
+            <button class="btn btn-danger" (click)="deleteCondidature(i.idCondidature)">Supprimer</button> <!-- Bouton de suppression -->
+            <button class="btn btn-primary" (click)="editCondidature(i)">Modifier</button>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>
